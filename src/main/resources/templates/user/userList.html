@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet"
+	id="bootstrap-css">
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="container">
+		<h1 class="h3 mb-3 font-weight-normal">ユーザ一覧</h1>
+		<div align="right">
+			<input type="button" class="btn btn-large btn-primary" value="新規" onclick="javascript: window.location.href='/new';">
+		</div>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>名前</th>
+					<th>年齢</th>
+					<th>性別</th>
+					<th width="60">編集</th>
+					<th width="60">削除</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="user : ${userList}">
+					<th scope="row" th:text="${user.userID}"></th>
+					<td th:text="${user.name}"></td>
+					<td th:text="${user.age}"></td>
+					<td th:text="${user.sex} == 1 ? '男' : (${user.sex} == 2 ? '女' : '未設定')"></td>
+					<td><input type="button" class="btn btn-info edit" value="編集"></td>
+					<td><input type="button" class="btn btn-danger del" value="削除"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$(".edit").click(function() {
+				var _this = $(this);
+				var userID = getUserID(_this);
+				window.location.href = "/edit?userID=" + userID;
+			});
+		});
+		function getUserID($obj) {
+			return $obj.parent("td").siblings(":eq(0)").text();
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="alert alert-danger" role="alert" th:if="${param.error}">
+			ユーザIDまたはパスワードが間違っています。
+		</div>
+		<form th:action="@{/doLogin}" method="post" class="form-signin">
+			<h1 class="h3 mb-3 font-weight-normal">ログイン</h1>
+			<label class="sr-only" for="userID">ユーザID：</label>
+			<input type="text" id="userID" name="userID" class="input-block-level" placeholder="ユーザID" required="required" autofocus="autofocus">
+			<label class="sr-only" for="password">パスワード：</label>
+			<input type="password" id="password" name="password" class="input-block-level" placeholder="パスワード" required="required" autofocus="autofocus">
+			<div class="checkbox">
+				<label>
+					<input type="checkbox" name="remeber-me">保存
+				</label>
+			</div>
+			<button class="btn btn-large btn-primary" type="submit">ログイン</button>
+			<div class="margin-top20 text-center">アカウントは持っていません？<a th:href="@{/regist}">新規登録</a></div>
+		</form>
+	</div>
+</body>
+</html>

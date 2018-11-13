@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ログイン</title>
+<link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="../bootstrap/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<form th:action="@{/doEdit}" method="post" class="form-signin">
+			<h1 class="h3 mb-3 font-weight-normal">詳細</h1>
+			<label class="sr-only" for="userID">ユーザID：自動採番</label>
+			<label class="sr-only" for="userID">名前：</label>
+			<input type="text" id="name" name="name" class="input-block-level" placeholder="名前" required="required" autofocus="autofocus">
+			<label class="sr-only" for="userID">年齢：</label>
+			<input type="text" id="age" name="age" class="input-block-level" placeholder="年齢" required="required" autofocus="autofocus">
+			<label class="sr-only" for="password">性別：</label>
+			<select class="input-block-level" id="sex" name="sex">
+				<option>選択してください</option>
+				<option th:each="sexes : ${sexList}" th:value="${sexes.key}" th:inline="text">[[${sexes.value}]]</option>
+			</select>
+			<label class="sr-only" for="userID">パスワード：</label>
+			<input type="password" id="password" name="password" class="input-block-level" placeholder="パスワード" required="required" autofocus="autofocus">
+			<input type="password" id="confirmPassword" name="confirmPassword" class="input-block-level" placeholder="パスワード確認" required="required" autofocus="autofocus">
+			<button class="btn btn-large btn-primary" type="submit">保存</button>
+			<button class="btn btn-large btn-primary" type="button" onclick="javascript: window.history.back();">戻る</button>
+		</form>
+	</div>
+</body>
+</html>
